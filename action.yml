@@ -9,5 +9,6 @@ runs:
   steps: 
     - shell: bash
       run: |
+        git remote remove destination || true
         git remote add destination "${{ inputs.targetRepoUrl }}"
         git push destination "$GITHUB_REF:$GITHUB_REF" -f
