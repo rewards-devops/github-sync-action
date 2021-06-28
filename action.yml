@@ -1,0 +1,13 @@
+name: 'Github Sync'
+description: 'Setup Kube config in the workspace'
+inputs:
+  targetRepoUrl:
+    description: 'the target github repo to push'
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - shell: bash
+      run: |
+        git remote add destination "${{ inputs.targetRepoUrl }}"
+        git push destination "$GITHUB_REF:$GITHUB_REF" -f
